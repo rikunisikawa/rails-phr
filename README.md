@@ -7,3 +7,7 @@ PHRのWEBアプリケーション
 - **フレームワーク:** Rails (バージョン: 7.0)
 - **データベース:** MySQL (バージョン: 8.0)
 - **その他の技術:** Docker, AWS Lambda, Terraform
+
+'''
+docker-compose run web rails new . --force --database=mysql --skip-bundle
+'''
