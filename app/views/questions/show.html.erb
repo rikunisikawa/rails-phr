@@ -1,0 +1,45 @@
+<h1 class="my-4">Show Question</h1>
+
+<div class="mb-3">
+  <h4>Title:</h4>
+  <p class="form-control"><%= @question.title %></p>
+</div>
+<div class="mb-3">
+  <h4>Name:</h4>
+  <p class="form-control"><%= @question.name %></p>
+</div>
+<div class="mb-3">
+  <h4>Content:</h4>
+  <p class="form-control"><%= @question.content %></p>
+</div>
+
+<h2 class="my-4">Answers</h2>
+<% @question.answers.each do |answer| %>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Name:</h5>
+      <p class="card-text"><%= answer.name %></p>
+      <h5 class="card-title">Content:</h5>
+      <p class="card-text"><%= answer.content %></p>
+      <%= link_to 'Destroy Answer', [answer.question, answer], class: 'btn btn-danger',
+          data: { turbo_method: 'delete', turbo_confirm: 'Are you sure?' } %>
+    </div>
+  </div>
+<% end %>
+
+<h2 class="my-4">Add an Answer</h2>
+<%= form_with model: [@question, @question.answers.build], local: true, class: 'mb-4' do |form| %>
+  <div class="mb-3">
+    <%= form.label :name, class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :content, class: 'form-label' %>
+    <%= form.text_area :content, class: 'form-control' %>
+  </div>
+  <div>
+    <%= form.submit 'Submit', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<%= link_to 'Top', questions_path, class: 'btn btn-secondary' %>
